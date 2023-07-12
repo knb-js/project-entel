@@ -19,8 +19,8 @@ public class ResultVO implements Serializable {
 	private MessageVO peticion;
 	private Object object;
 
-	public void setPeticion(String fechaRsp, String horaRsp, String mensaje, String codigo) {
-		MessageVO peticion = new MessageVO(fechaRsp, horaRsp, mensaje, codigo);
+	public void setPeticion(String fecha, String mensaje) {
+		MessageVO peticion = new MessageVO(fecha, mensaje);
 		this.peticion = peticion;
 	}
 

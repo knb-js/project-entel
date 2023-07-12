@@ -10,7 +10,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,19 +32,20 @@ public class UserServiceImpl implements UserService {
                 user.setEmail(userDTO.getEmail());
                 if(listUser==null) listUser = new ArrayList<>();
                 String id = UUID.randomUUID().toString().toUpperCase().substring(0,12);
-                user.setId(id);
+                user.setIdUser(id);
                 listUser.add(user);
                 userMapper.addUser(user);
                 log.info("Se ingresa el usuario correctamente ✔️");
                 return true;
             }catch (Exception ex){
-                log.error("ERROR , no se ha podido ingresar el usuario ❌", ex);
+                log.error("ERROR , no se ha podido ingresar el usuario ❌ ", ex);
                 return false;
             }
     }
 
     @Override
     public List<UserEntity> getAllUser(String id) {
+
         return userMapper.getAllUser(id);
     }
 }

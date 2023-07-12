@@ -11,7 +11,7 @@ import lombok.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserEntity {
 
-    private String id;
+    private String idUser;
     private String email;
-    private String date;
+    private String dateCreate;
 }

@@ -12,15 +12,15 @@ import java.util.List;
 public interface UserMapper {
 
     @Select("select   " +
-            "id,  " +
-            "name,  " +
-            "created_at  " +
+            "id as idUser,  " +
+            "name as email,  " +
+            "created_at as dateCreate " +
             "from   " +
-            "usuario where id = 'AB267309-3C4'")
+            "usuario where id = #{id}")
     List<UserEntity> getAllUser(@Param("id") String id);
 
     @Insert("INSERT INTO usuario (id,name) " +
-            "VALUES (#{userEntity.id}, #{userEntity.email})")
+            "VALUES (#{userEntity.idUser}, #{userEntity.email})")
     Integer addUser(@Param("userEntity") UserEntity userEntity);
 
 }

@@ -8,37 +8,25 @@ public class MessageVO implements Serializable {
 	
 private static final long serialVersionUID = -4386829749075232981L;
 	
-	private String fechaRsp;
-	private String horaRsp;
+	private String fecha;
 	private String mensaje;
-	private String codigo;
 	
 
 	public MessageVO(){
 			
 	}
 	
-	public MessageVO(String fechaRsp, String horaRsp, String mensaje, String codigo){
-		this.setFechaRsp(fechaRsp);
-		this.setHoraRsp(horaRsp);
+	public MessageVO(String fecha, String mensaje){
+		this.setFecha(fecha);
 		this.setMensaje(mensaje);
-		this.setCodigo(codigo);
 	}
 
-	public String getFechaRsp() {
-		return fechaRsp;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setFechaRsp(String fechaRsp) {
-		this.fechaRsp = fechaRsp;
-	}
-
-	public String getHoraRsp() {
-		return horaRsp;
-	}
-
-	public void setHoraRsp(String horaRsp) {
-		this.horaRsp = horaRsp;
+	public void setFecha(String fechaRsp) {
+		this.fecha = fechaRsp;
 	}
 
 	public String getMensaje() {
@@ -49,18 +37,10 @@ private static final long serialVersionUID = -4386829749075232981L;
 		this.mensaje = mensaje;
 	}
 
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
 
 	@Override
 	public String toString() {
-		return "MensajeVO [fechaRsp=" + fechaRsp + ", horaRsp=" + horaRsp + ", mensaje=" + mensaje + ", codigo="
-				+ codigo + "]";
+		return "MensajeVO [fecha=" + fecha +  ", mensaje=" + mensaje + "]";
 	}
 
 }

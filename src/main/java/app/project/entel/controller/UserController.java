@@ -34,12 +34,12 @@ public class UserController {
             if (userDTO.getEmail() ==null || userDTO.getEmail().isEmpty()){
                 log.error("No se ha podido agregar el usuario");
                 mensajes = ENTELUtil.Codigos.ERRORUSER.split(";");
-                salida.setPeticion(new MessageVO(timestamp[0], timestamp[1], mensajes[1], mensajes[0]));
+                salida.setPeticion(new MessageVO(timestamp[0],mensajes[1]));
                 return new ResponseEntity<ResultVO>(salida, HttpStatus.INTERNAL_SERVER_ERROR);
             }else{
                 userService.addUserMapping(userDTO);
-                log.info("Agregando usuario");
-                MessageVO mensaje = new MessageVO(timestamp[0], timestamp[1], mensajes[1], mensajes[0]);
+                log.info("Usuario agregado exitosamente ! ");
+                MessageVO mensaje = new MessageVO(timestamp[0],mensajes[1]);
                 salida.setPeticion(mensaje);
                 return new ResponseEntity<>(salida, HttpStatus.OK);
             }
@@ -47,7 +47,7 @@ public class UserController {
         } catch (Exception e) {
             log.error("Proceso finalizado debido a un error. Revisar log para mas detalles.");
             mensajes = ENTELUtil.Codigos.UNEXPECTEDERROR.split(";");
-            salida.setPeticion(new MessageVO(timestamp[0], timestamp[1], mensajes[1], mensajes[0]));
+            salida.setPeticion(new MessageVO(timestamp[0],mensajes[1]));
             return new ResponseEntity<ResultVO>(salida, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -70,7 +70,7 @@ public class UserController {
 
                 mensajes = ENTELUtil.Codigos.INVALIDPARAMETERS.split(";");
                 log.error("Los parametros entregados no son correctos. ");
-                resp.setPeticion(timestamp[0], timestamp[1], mensajes[1], mensajes[0]);
+                resp.setPeticion(timestamp[0],mensajes[1]);
 
                 return new ResponseEntity<>(resp, HttpStatus.BAD_REQUEST);
             }
@@ -80,20 +80,20 @@ public class UserController {
             if(userResponse == null) {
                 mensajes = ENTELUtil.Codigos.NOTDATAFOUND.split(";");
                 log.error("Ha ocurrido un error al obtener la data.");
-                resp.setPeticion(timestamp[0], timestamp[1], mensajes[1], mensajes[0]);
+                resp.setPeticion(timestamp[0], mensajes[1]);
                 return new ResponseEntity<>(resp, HttpStatus.NOT_FOUND);
             }
             mensajes = ENTELUtil.Codigos.INFOOK.split(";");
-            log.info("Datos encontrados correctamente.");
+            log.info("Datos encontrados correctamente. ");
             resp.setObject(userResponse);
-            resp.setPeticion(timestamp[0], timestamp[1], mensajes[1], mensajes[0]);
+            resp.setPeticion(timestamp[0], mensajes[1]);
             log.debug("[getAllUser] - RESPONSE - {}", mapper.writeValueAsString(resp));
             return new ResponseEntity<>(resp, HttpStatus.OK);
 
         }catch (Exception e){
             mensajes = ENTELUtil.Codigos.UNEXPECTEDERROR.split(";");
             log.error("Ha ocurrido error al obtener la data {}", e.getMessage());
-            resp.setPeticion(timestamp[0], timestamp[1], mensajes[1], mensajes[0]);
+            resp.setPeticion(timestamp[0], mensajes[1]);
             return new ResponseEntity<>(resp, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
