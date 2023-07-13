@@ -19,6 +19,14 @@ public interface UserMapper {
             "usuario where id = #{id}")
     List<UserEntity> getAllUser(@Param("id") String id);
 
+    @Select("select  " +
+            "id as idUser, " +
+            "name as email, " +
+            "created_at as dateCreate " +
+            "from usuario  " +
+            "where name = #{email}")
+    List<UserEntity> findByUser(@Param("email") String email);
+
     @Insert("INSERT INTO usuario (id,name) " +
             "VALUES (#{userEntity.idUser}, #{userEntity.email})")
     Integer addUser(@Param("userEntity") UserEntity userEntity);

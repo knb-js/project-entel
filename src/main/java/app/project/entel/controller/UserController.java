@@ -16,6 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/v1/getUserEntel")
 @Log4j2
@@ -99,5 +102,24 @@ public class UserController {
 
     }
 
+    @GetMapping("/getByUser/{email}")
+    public ResponseEntity<ResponseDTO> findByUser(@PathVariable("email") String email){
+
+        try {
+            List<UserEntity> user = userService.findByUser(email);
+            return new ResponseEntity<ResponseDTO>(ResponseDTO
+                    .builder()
+                    .status(Objects.nonNull(user))
+                    .message(Objects.nonNull(user) ? "Usuarios obtenidos con éxito ✔️ " : " Ha ocurrido un ERROR para obtener los usuarios ❌ ")
+                    .data(user)
+                    .build(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<ResponseDTO>(ResponseDTO
+                    .builder()
+                    .status(false)
+                    .message("Error al obtener usuario " + e.getMessage())
+                    .build(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

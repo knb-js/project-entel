@@ -12,4 +12,6 @@ public interface UserService {
 
     List<UserEntity> getAllUser(@Param("id") String id);
 
+    List<UserEntity> findByUser(@Param("email") String email);
+
 }
